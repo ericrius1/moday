@@ -35,6 +35,11 @@ function Photo(){
         if(pixels.data[p+3] > 0){
           var pixelCol  = (pixels.data[p] << 16) + (pixels.data[p+1] << 8) + pixels.data[p+2];
           var color     = new THREE.Color(pixelCol);
+          //the more blue, the higher the pixel from (0 -255)
+          var yHeight = map(pixels.data[p+2], 0, 255, -20, 20);
+          if(x % 50){
+            // console.log(yHeight);
+          }
           var vector    = new THREE.Vector3(-300 + x/4, 0, 240-z);
 
           //push on the particle
@@ -45,7 +50,6 @@ function Photo(){
       }
     }
 
-    console.log('num times through pixel loop: ', i);
 
     //now create a new system
     particleSystem = new THREE.ParticleSystem(geometry, material);
@@ -59,7 +63,7 @@ function Photo(){
   };
 
   this.update = function(){
-    particles[0].x += 0.1;
+    
   };
 }
 
