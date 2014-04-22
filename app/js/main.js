@@ -1,10 +1,7 @@
 
 var scene, camera, controls, renderer, canvas, cameraController, clock, director;
 var geometry, material, mesh;
-var image;
 
-var HEIGHT = 600;
-var WIDTH = 600;
 
 init();
 

@@ -1,4 +1,5 @@
 var photo;
+var controlsEnabled = false;
 function Director(){
   this.init = function(){
     cameraController = new CameraController();
@@ -17,6 +18,8 @@ function Director(){
   this.update = function(){
     cameraController.update();
     photo.update();
-    TWEEN.update();
+    if(!controlsEnabled){
+      TWEEN.update();
+    }
   };
 }

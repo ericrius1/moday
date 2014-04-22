@@ -1,13 +1,16 @@
 //MAKE SURE TO REMEBER WE ROTATED PARTICLE MESH 180 degrees AROUND Y AXIS so well ened to reverse x translations
+var image;
 
-var DENSITY = 4;
+var WIDTH = 2048;
+var HEIGHT = 1356;
+var DENSITY = 6;
 var step = DENSITY * 4;
 function Photo(){
   var particleSystem, particles, colors;
 
   //Draw the image to the canvas
   image = document.createElement('img');
-  image.src = "assets/mom.jpg";
+  image.src = "assets/mom3.jpg";
 
   this.init = function(){
 
@@ -22,7 +25,7 @@ function Photo(){
     var geometry = new THREE.Geometry();
     var pixels = context.getImageData(0, 0, WIDTH, HEIGHT);
     var x = 0, y=0;
-
+    var i = 0;
     //go through the image pixels
     for(x = 0; x < WIDTH * 4; x+=step){
       for(z = HEIGHT; z >=0; z-=DENSITY){
@@ -37,9 +40,12 @@ function Photo(){
           //push on the particle
           geometry.vertices.push(vector);
           geometry.colors.push(color);
+          i++;
         }
       }
     }
+
+    console.log('num times through pixel loop: ', i);
 
     //now create a new system
     particleSystem = new THREE.ParticleSystem(geometry, material);
@@ -48,9 +54,8 @@ function Photo(){
 
     particles = particleSystem.geometry.vertices;
     colors = particleSystem.geometry.colors;
-
-    pixels = null;
     scene.add(particleSystem);
+    pixels = null;
   };
 
   this.update = function(){
