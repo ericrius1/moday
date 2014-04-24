@@ -1,6 +1,6 @@
 function CameraController(){
   var travelDistance = 1000;
-  var camAnimationTime = 40000;
+  var camAnimationTime = 20000;
   this.init = function(){
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
     camera.position.z = HEIGHT;

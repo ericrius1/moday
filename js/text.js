@@ -1,33 +1,43 @@
-var currentLetter;
 
+
+//Have a tween for each letter?
 function Text() {
-  var message = "HAPPYMOTHERSDAY!";
+  var message = [];
+  var messageArray = 'Hey';
   var letterIndex = 0;
   var animationTime = 3000;
   var textPosOffset = 2.5;
   //Pass in a letter, then abstract the rest away!
   this.init = function() {
 
+    setUpLetters();
     this.letterMaterial = new THREE.MeshBasicMaterial({
       color: 0xff00ff
     });
-    this.addLetter('H');
+    this.addLetter();
   };
 
-  this.addLetter = function(theLetter) {
-    var letterGeo = new THREE.TextGeometry(theLetter, {
+  this.addLetter = function() {
+    var letterKey = messageArray[letterIndex];
+    var letterGeo = new THREE.TextGeometry(letterKey, {
       size: 50,
       height: 5,
       curveSegments: 4,
       font: 'helvetiker'
     });
+
     letterGeo.computeVertexNormals();
     letterGeo.computeBoundingBox();
 
-    currentLetter = new THREE.Mesh(letterGeo, this.letterMaterial);
-    currentLetter.lookAt(camera.position);
-    scene.add(currentLetter);
-    currentLetter.scale.multiplyScalar(0.1);
+    var letter = new THREE.Mesh(letterGeo, this.letterMaterial);
+    letter.lookAt(camera.position);
+
+    //Add mesh to letterObj
+    message[letterKey].mesh = letter;
+
+
+    scene.add(letter);
+    letter.scale.multiplyScalar(0.1);
 
     var target = camera.clone();
     target.translateZ(-100);
@@ -45,24 +55,27 @@ function Text() {
     to(finalPos, animationTime).
     easing(TWEEN.Easing.Cubic.InOut).
     onUpdate(function() {
-      currentLetter.position.set(currentPos.x, currentPos.y, currentPos.z);
+      letter.position.set(currentPos.x, currentPos.y, currentPos.z);
     }).start();
     letterTweenIn.onComplete(function() {
-      tweenLetterOut();
+      tweenLetterOut(letterIndex);
     });
     var self = this;
     //Now do this again every x seconds!
-    setTimeout(function(){
+    setTimeout(function() {
       letterIndex++;
-      self.addLetter(message[letterIndex]);
-    }, animationTime * 2);
+      if (letterIndex < message.length) {
+        self.addLetter(message[letterIndex]);
+      }
+    }, animationTime * 1.1);
   };
 
-  function tweenLetterOut() {
+  function tweenLetterOut(letterIndex) {
+    var letter = message[messageArray[letterIndex]].mesh;
     var currentPos = {
-      x: currentLetter.position.x,
-      y: currentLetter.position.y,
-      z: currentLetter.position.z,
+      x: letter.position.x,
+      y: letter.position.y,
+      z: letter.position.z,
     };
     var finalPos = {
       x: 0,
@@ -73,7 +86,19 @@ function Text() {
     to(finalPos, animationTime).
     easing(TWEEN.Easing.Cubic.InOut).
     onUpdate(function() {
-      currentLetter.position.set(currentPos.x, currentPos.y, currentPos.z);
+      letter.position.set(currentPos.x, currentPos.y, currentPos.z);
     }).start();
+  }
+
+  function setUpLetters() {
+    for (var i = 0; i < messageArray.length; i++) {
+      message[messageArray[i]] = {
+        finalPos: {
+          x: 10,
+          y: 10,
+          z: 10
+        }
+      };
+    }
   }
 }
