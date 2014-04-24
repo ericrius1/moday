@@ -1,6 +1,8 @@
 var currentLetter;
 
 function Text() {
+  var message = "HAPPYMOTHERSDAY!";
+  var letterIndex = 0;
   var animationTime = 3000;
   var textPosOffset = 2.5;
   //Pass in a letter, then abstract the rest away!
@@ -48,6 +50,12 @@ function Text() {
     letterTweenIn.onComplete(function() {
       tweenLetterOut();
     });
+    var self = this;
+    //Now do this again every x seconds!
+    setTimeout(function(){
+      letterIndex++;
+      self.addLetter(message[letterIndex]);
+    }, animationTime * 2);
   };
 
   function tweenLetterOut() {
