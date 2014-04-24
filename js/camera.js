@@ -3,7 +3,7 @@ function CameraController(){
   this.init = function(){
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
     camera.position.z = HEIGHT;
-    camera.position.set(-1740, 8, 1100);
+    camera.position.set(-1059, 0.5, 888);
     camera.rotation.set(-0.00778, -1.006, -0.1017);
     // camera.rotation.x = Math.PI/2;
     // camera.translateZ(HEIGHT/2 + 70);

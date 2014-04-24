@@ -1,43 +1,30 @@
-function Text(){
-  this.init = function(){
-   var theText = "THREE.JS";
+function Text() {
+  //Pass in a letter, then abstract the rest away!
+  this.init = function(letter) {
 
-        // Get text from hash
+    var material = new THREE.MeshBasicMaterial({color: 0xff00ff});
 
-        var hash = document.location.hash.substr( 1 );
+    var text3D = new THREE.TextGeometry(letter, {
 
-        if ( hash.length !== 0 ) {
+      size: 70,
+      height: 25,
+      curveSegments: 4,
+      font: "helvetiker",
 
-          theText = hash;
+      bevelEnabled: true,
+      bevelThickness: 2,
+      bevelSize: 2,
 
-        }
+      material: 0,
+      extrudeMaterial: 1
 
-        var material = new THREE.MeshFaceMaterial( [
-          new THREE.MeshLambertMaterial( { color: 0xffffff, shading: THREE.FlatShading, opacity: 0.95 } ),
-          new THREE.MeshLambertMaterial( { color: 0xffffff } )
-        ] );
+    });
 
-        // var text3d = new THREE.TextGeometry( theText, {
+    text3D.computeVertexNormals();
+    text3D.computeBoundingBox();
 
-        //   size: 70,
-        //   height: 25,
-        //   curveSegments: 4,
-        //   font: "helvetiker",
-
-        //   bevelEnabled: true,
-        //   bevelThickness: 2,
-        //   bevelSize: 2,
-
-        //   material: 0,
-        //   extrudeMaterial: 1
-
-        // });
-
-    // text3D.computeVertexNormals();
-    // text3D.computeBoundingBox();
-
-    // var text = new THREE.Mesh(text3D, material);
-    // scene.add(text);
+    var text = new THREE.Mesh(text3D, material);
+    scene.add(text);
 
   };
 

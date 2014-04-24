@@ -3,7 +3,7 @@ var image;
 
 var WIDTH = 1356;
 var HEIGHT = 1129;
-var DENSITY = 2;
+var DENSITY = 4;
 var step = DENSITY * 2;
 function Photo(){
   var particleSystem, particles, colors;
