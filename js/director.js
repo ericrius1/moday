@@ -1,5 +1,6 @@
 var photo;
 var controlsEnabled = true;
+// var controlsEnabled = false;
 function Director(){
   this.init = function(){
     cameraController = new CameraController();

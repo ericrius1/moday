@@ -30,7 +30,7 @@ function CameraController(){
       rotZ: camera.rotation.z
     };
     var camTween = new TWEEN.Tween(currentPos).
-      to(finalPos, 20000).
+      to(finalPos, 50000).
       easing(TWEEN.Easing.Quadratic.In).
       onUpdate(function(){
         camera.position.set(currentPos.x, currentPos.y, currentPos.z);
@@ -39,6 +39,7 @@ function CameraController(){
   };
 
   this.update = function(){
+    
 
     if(controlsEnabled){
       controls.update(); 
