@@ -39,6 +39,7 @@ function animate() {
     // note: three.js includes requestAnimationFrame shim
     requestAnimationFrame(animate);
     director.update();
+    TWEEN.update();
     renderer.render(scene, camera);
 }
 

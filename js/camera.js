@@ -5,9 +5,7 @@ function CameraController(){
     camera.position.z = HEIGHT;
     camera.position.set(-1059, 0.5, 888);
     camera.rotation.set(-0.00778, -1.006, -0.1017);
-    // camera.rotation.x = Math.PI/2;
-    // camera.translateZ(HEIGHT/2 + 70);
-    // camera.position.x -= 2;
+    scene.add(camera);
     if(controlsEnabled){
      controls = new THREE.TrackballControls(camera);
     }
@@ -16,26 +14,24 @@ function CameraController(){
       x: camera.position.x,
       y: camera.position.y,
       z: camera.position.z,
-      rotX: camera.rotation.x,
-      rotY: camera.rotation.y,
-      rotZ: camera.rotation.z
     };
 
+    var target = camera.clone();
+    target.translateZ(-100);
+
     var finalPos = {
-      x: 0,
-      y: camera.position.y,
-      z: 0,
-      rotX: camera.rotation.x,
-      rotY: camera.rotation.y,
-      rotZ: camera.rotation.z
+      x: target.position.x,
+      y: target.position.y,
+      z: target.position.z,
     };
-    var camTween = new TWEEN.Tween(currentPos).
-      to(finalPos, 50000).
-      easing(TWEEN.Easing.Quadratic.In).
-      onUpdate(function(){
-        camera.position.set(currentPos.x, currentPos.y, currentPos.z);
-        camera.rotation.x = currentPos.rotX;
-      }).start();
+    if(!controlsEnabled){
+      var camTween = new TWEEN.Tween(currentPos).
+        to(finalPos, 2000).
+        easing(TWEEN.Easing.Quadratic.In).
+        onUpdate(function(){
+          camera.position.set(currentPos.x, currentPos.y, currentPos.z);
+        }).start();
+    }
   };
 
   this.update = function(){
