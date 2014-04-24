@@ -71,16 +71,17 @@ function Text() {
   };
 
   function tweenLetterOut(letterIndex) {
-    var letter = message[messageArray[letterIndex]].mesh;
+    var letterObj = message[messageArray[letterIndex]];
+    var letter = letterObj.mesh;
     var currentPos = {
       x: letter.position.x,
       y: letter.position.y,
       z: letter.position.z,
     };
     var finalPos = {
-      x: 0,
-      y: 100,
-      z: 0
+      x: letterObj.finalPos.x,
+      y: letterObj.finalPos.y,
+      z: letterObj.finalPos.z
     };
     var letterTweenOut = new TWEEN.Tween(currentPos).
     to(finalPos, animationTime).
@@ -95,7 +96,7 @@ function Text() {
       message[messageArray[i]] = {
         finalPos: {
           x: 10,
-          y: 10,
+          y: 20,
           z: 10
         }
       };
