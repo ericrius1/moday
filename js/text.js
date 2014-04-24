@@ -1,45 +1,71 @@
- function Text() {
-  var animationTime = 1000;
+var currentLetter;
+
+function Text() {
+  var animationTime = 3000;
+  var textPosOffset = 2.5;
   //Pass in a letter, then abstract the rest away!
   this.init = function() {
 
-    this.letterMaterial = new THREE.MeshBasicMaterial({color: 0xff00ff});
+    this.letterMaterial = new THREE.MeshBasicMaterial({
+      color: 0xff00ff
+    });
     this.addLetter('H');
   };
 
-  this.addLetter = function(letter){
-    var letterGeo = new THREE.TextGeometry(letter, {
+  this.addLetter = function(theLetter) {
+    var letterGeo = new THREE.TextGeometry(theLetter, {
       size: 50,
       height: 5,
       curveSegments: 4,
-      font:'helvetiker'
+      font: 'helvetiker'
     });
     letterGeo.computeVertexNormals();
     letterGeo.computeBoundingBox();
 
-    letterMesh = new THREE.Mesh(new THREE.SphereGeometry(10, 10), this.letterMaterial);
-    letterMesh.lookAt(camera.position);
-    scene.add(letterMesh);
-    letterMesh.scale.multiplyScalar(0.1);
-    
+    currentLetter = new THREE.Mesh(letterGeo, this.letterMaterial);
+    currentLetter.lookAt(camera.position);
+    scene.add(currentLetter);
+    currentLetter.scale.multiplyScalar(0.1);
 
     var target = camera.clone();
     target.translateZ(-100);
     var currentPos = {
       x: 0,
-      y: 100, 
+      y: 100,
       z: 0
     };
     var finalPos = {
-      x: target.position.x,
-      y: target.position.y,
+      x: target.position.x - textPosOffset,
+      y: target.position.y - textPosOffset,
       z: target.position.z,
     };
-    var letterTween = new TWEEN.Tween(currentPos).
-      to(finalPos, animationTime).
-      easing(TWEEN.Easing.Cubic.InOut).
-      onUpdate(function(){
-        letterMesh.position.set(currentPos.x, currentPos.y, currentPos.z);
-      }).start();
+    var letterTweenIn = new TWEEN.Tween(currentPos).
+    to(finalPos, animationTime).
+    easing(TWEEN.Easing.Cubic.InOut).
+    onUpdate(function() {
+      currentLetter.position.set(currentPos.x, currentPos.y, currentPos.z);
+    }).start();
+    letterTweenIn.onComplete(function() {
+      tweenLetterOut();
+    });
   };
+
+  function tweenLetterOut() {
+    var currentPos = {
+      x: currentLetter.position.x,
+      y: currentLetter.position.y,
+      z: currentLetter.position.z,
+    };
+    var finalPos = {
+      x: 0,
+      y: 100,
+      z: 0
+    };
+    var letterTweenOut = new TWEEN.Tween(currentPos).
+    to(finalPos, animationTime).
+    easing(TWEEN.Easing.Cubic.InOut).
+    onUpdate(function() {
+      currentLetter.position.set(currentPos.x, currentPos.y, currentPos.z);
+    }).start();
+  }
 }

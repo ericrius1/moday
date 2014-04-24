@@ -24,7 +24,7 @@ function CameraController(){
       y: target.position.y,
       z: target.position.z,
     };
-    if(!controlsEnabled){
+    if(cameraTweenEnabled){
       var camTween = new TWEEN.Tween(currentPos).
         to(finalPos, 2000).
         easing(TWEEN.Easing.Quadratic.In).
