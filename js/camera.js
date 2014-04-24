@@ -7,7 +7,7 @@ function CameraController(){
     camera.rotation.set(-0.00778, -1.006, -0.1017);
     scene.add(camera);
     if(controlsEnabled){
-     controls = new THREE.TrackballControls(camera);
+     controls = new THREE.OrbitControls(camera);
     }
 
     var currentPos = {
