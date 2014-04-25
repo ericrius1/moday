@@ -1,43 +1,44 @@
 
 
-//Have a tween for each letter?
+//Should be word by word
 function Text() {
   var message = [];
-  var messageArray = 'Hey';
-  var letterIndex = 0;
+  var messageArray = ['We', 'Love', 'You', 'Mom!'];
+  var wordIndex = 0;
   var animationTime = 3000;
   var textPosOffset = 2.5;
-  //Pass in a letter, then abstract the rest away!
   this.init = function() {
 
-    setUpLetters();
-    this.letterMaterial = new THREE.MeshBasicMaterial({
+    initTestText();
+    setUpWords();
+    this.wordMaterial = new THREE.MeshBasicMaterial({
       color: 0xff00ff
     });
-    this.addLetter();
+    this.addWord();
   };
 
-  this.addLetter = function() {
-    var letterKey = messageArray[letterIndex];
-    var letterGeo = new THREE.TextGeometry(letterKey, {
+  this.addWord = function() {
+    var self = this;
+    var wordKey = messageArray[wordIndex];
+    var wordGeo = new THREE.TextGeometry(wordKey, {
       size: 50,
       height: 5,
       curveSegments: 4,
       font: 'helvetiker'
     });
 
-    letterGeo.computeVertexNormals();
-    letterGeo.computeBoundingBox();
+    wordGeo.computeVertexNormals();
+    wordGeo.computeBoundingBox();
 
-    var letter = new THREE.Mesh(letterGeo, this.letterMaterial);
-    letter.lookAt(camera.position);
+    var word = new THREE.Mesh(wordGeo, this.wordMaterial);
+    word.lookAt(camera.position);
 
     //Add mesh to letterObj
-    message[letterKey].mesh = letter;
+    message[wordKey].mesh = word;
 
 
-    scene.add(letter);
-    letter.scale.multiplyScalar(0.1);
+    scene.add(word);
+    word.scale.multiplyScalar(0.1);
 
     var target = camera.clone();
     target.translateZ(-100);
@@ -51,47 +52,43 @@ function Text() {
       y: target.position.y - textPosOffset,
       z: target.position.z,
     };
-    var letterTweenIn = new TWEEN.Tween(currentPos).
+    var wordTweenIn = new TWEEN.Tween(currentPos).
     to(finalPos, animationTime).
     easing(TWEEN.Easing.Cubic.InOut).
     onUpdate(function() {
-      letter.position.set(currentPos.x, currentPos.y, currentPos.z);
+      word.position.set(currentPos.x, currentPos.y, currentPos.z);
     }).start();
-    letterTweenIn.onComplete(function() {
-      tweenLetterOut(letterIndex);
-    });
-    var self = this;
-    //Now do this again every x seconds!
-    setTimeout(function() {
-      letterIndex++;
-      if (letterIndex < message.length) {
-        self.addLetter(message[letterIndex]);
+    wordTweenIn.onComplete(function() {
+      tweenWordOut(wordIndex);
+      wordIndex++;
+      if(wordIndex < messageArray.length){
+        self.addWord();
       }
-    }, animationTime * 1.1);
+    });
   };
 
-  function tweenLetterOut(letterIndex) {
-    var letterObj = message[messageArray[letterIndex]];
-    var letter = letterObj.mesh;
+  function tweenWordOut(wordIndex) {
+    var wordObj = message[messageArray[wordIndex]];
+    var word = wordObj.mesh;
     var currentPos = {
-      x: letter.position.x,
-      y: letter.position.y,
-      z: letter.position.z,
+      x: word.position.x,
+      y: word.position.y,
+      z: word.position.z,
     };
     var finalPos = {
-      x: letterObj.finalPos.x,
-      y: letterObj.finalPos.y,
-      z: letterObj.finalPos.z
+      x: wordObj.finalPos.x,
+      y: wordObj.finalPos.y,
+      z: wordObj.finalPos.z
     };
-    var letterTweenOut = new TWEEN.Tween(currentPos).
+    var wordTweenOut = new TWEEN.Tween(currentPos).
     to(finalPos, animationTime).
     easing(TWEEN.Easing.Cubic.InOut).
     onUpdate(function() {
-      letter.position.set(currentPos.x, currentPos.y, currentPos.z);
+      word.position.set(currentPos.x, currentPos.y, currentPos.z);
     }).start();
   }
 
-  function setUpLetters() {
+  function setUpWords() {
     for (var i = 0; i < messageArray.length; i++) {
       message[messageArray[i]] = {
         finalPos: {
@@ -102,4 +99,27 @@ function Text() {
       };
     }
   }
+}
+
+function initTestText(){
+
+   var textMaterial = new THREE.MeshBasicMaterial({
+      color: 0xff00ff
+    });
+   var textGeo = new THREE.TextGeometry("WE LOVE YOU MOM!", {
+      size: 140,
+      height: 5,
+      curveSegments: 4,
+      font: 'helvetiker'
+    });
+
+    textGeo.computeVertexNormals();
+    textGeo.computeBoundingBox();
+
+    window.testText = new THREE.Mesh(textGeo, textMaterial);
+    scene.add(testText);
+    testText.position.x= -WIDTH;
+    testText.position.z= -500;
+    testText.rotation.x = -Math.PI/2;
+
 }

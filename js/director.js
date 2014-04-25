@@ -1,7 +1,8 @@
 var photo;
 var controlsEnabled = true;
-var cameraTweenEnabled = true;
 // var controlsEnabled = false;
+// var cameraTweenEnabled = true;
+var cameraTweenEnabled = false;
 function Director(){
   this.init = function(){
     cameraController = new CameraController();
@@ -18,6 +19,7 @@ function Director(){
   };
 
   this.update = function(){
+    // window.testText.rotation.x -= 0.01;
     cameraController.update();
     photo.update();
   };

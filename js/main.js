@@ -1,4 +1,4 @@
-
+//Love should be a heart
 var scene, camera, controls, renderer, canvas, cameraController, clock, director;
 var geometry, material, mesh;
 
