@@ -9,7 +9,7 @@ function Text() {
   var textPosOffset = 2.5;
   this.init = function() {
 
-    initTestText();
+    // initTestText();
     setUpWords();
     this.wordMaterial = new THREE.MeshBasicMaterial({
       color: 0xff00ff
@@ -74,17 +74,20 @@ function Text() {
       x: word.position.x,
       y: word.position.y,
       z: word.position.z,
+      scale: word.scale.x
     };
     var finalPos = {
       x: wordObj.finalPos.x,
       y: wordObj.finalPos.y,
-      z: wordObj.finalPos.z
+      z: wordObj.finalPos.z,
+      scale: wordObj.finalPos.scale
     };
     var wordTweenOut = new TWEEN.Tween(currentPos).
     to(finalPos, animationTime).
     easing(TWEEN.Easing.Cubic.InOut).
     onUpdate(function() {
       word.position.set(currentPos.x, currentPos.y, currentPos.z);
+      word.scale.set(currentPos.scale, currentPos.scale, currentPos.scale);
     }).start();
   }
 
@@ -92,9 +95,10 @@ function Text() {
     for (var i = 0; i < messageArray.length; i++) {
       message[messageArray[i]] = {
         finalPos: {
-          x: 10,
-          y: 20,
-          z: 10
+          x: -1268,
+          y: 11,
+          z: -548,
+          scale: 1
         }
       };
     }
