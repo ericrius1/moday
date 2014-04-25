@@ -7,9 +7,11 @@ function Text() {
   var wordIndex = 0;
   var animationTime = 3000;
   var textPosOffset = 2.5;
+  var finalWordX = -1270;
+  var finalWordScale = 2.5; 
+  var wordGap = finalWordScale * 200;
   this.init = function() {
 
-    // initTestText();
     setUpWords();
     this.wordMaterial = new THREE.MeshBasicMaterial({
       color: 0xff00ff
@@ -74,13 +76,19 @@ function Text() {
       x: word.position.x,
       y: word.position.y,
       z: word.position.z,
-      scale: word.scale.x
+      scale: word.scale.x,
+      rotX: word.rotation.x,
+      rotY: word.rotation.y,
+      rotZ: word.rotation.z
     };
     var finalPos = {
       x: wordObj.finalPos.x,
       y: wordObj.finalPos.y,
       z: wordObj.finalPos.z,
-      scale: wordObj.finalPos.scale
+      scale: wordObj.finalPos.scale,
+      rotX: wordObj.finalPos.rotX,
+      rotY: 0,
+      rotZ: 0
     };
     var wordTweenOut = new TWEEN.Tween(currentPos).
     to(finalPos, animationTime).
@@ -88,6 +96,7 @@ function Text() {
     onUpdate(function() {
       word.position.set(currentPos.x, currentPos.y, currentPos.z);
       word.scale.set(currentPos.scale, currentPos.scale, currentPos.scale);
+      word.rotation.set(currentPos.rotX, currentPos.rotY, currentPos.rotZ);
     }).start();
   }
 
@@ -95,35 +104,14 @@ function Text() {
     for (var i = 0; i < messageArray.length; i++) {
       message[messageArray[i]] = {
         finalPos: {
-          x: -1268,
+          x: finalWordX + (i * wordGap),
           y: 11,
-          z: -548,
-          scale: 1
+          z: -500,
+          scale: finalWordScale,
+          rotX: -Math.PI/2
         }
       };
     }
   }
 }
 
-function initTestText(){
-
-   var textMaterial = new THREE.MeshBasicMaterial({
-      color: 0xff00ff
-    });
-   var textGeo = new THREE.TextGeometry("WE LOVE YOU MOM!", {
-      size: 140,
-      height: 5,
-      curveSegments: 4,
-      font: 'helvetiker'
-    });
-
-    textGeo.computeVertexNormals();
-    textGeo.computeBoundingBox();
-
-    window.testText = new THREE.Mesh(textGeo, textMaterial);
-    scene.add(testText);
-    testText.position.x= -WIDTH;
-    testText.position.z= -500;
-    testText.rotation.x = -Math.PI/2;
-
-}
