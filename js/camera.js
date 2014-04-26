@@ -1,17 +1,20 @@
+// var controlsEnabled = true;
+// var controlsEnabled = false;
+var controlsEnabled = true;
+var cameraTweenEnabled = false;
 function CameraController(){
   var travelDistance = 1000;
   var camAnimationTime = 20000;
   this.init = function(){
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 100000);
-    camera.position.z = HEIGHT;
-    camera.position.set(-1059, 0.5, 888);
-    camera.rotation.set(-0.00778, -1.006, -0.1017);
+    camera.position.x -= WIDTH/2 +55;
     scene.add(camera);
     if(controlsEnabled){
+      // controls = new THREE.TrackballControls(camera);
      controls = new THREE.FlyControls(camera);
-     controls.movementSpeed = 100;
+     controls.movementSpeed = 300;
      controls.rollSpeed = 0.5;
-     // controls.dragToLook = true;/
+     controls.dragToLook = true;
     }
 
     var currentPos = {

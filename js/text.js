@@ -3,7 +3,7 @@
 //Should be word by word
 function Text() {
   var message = [];
-  var messageArray = ['We', 'Love', 'You', 'Mom!'];
+  var messageArray = ['We', 'Love', 'You', 'Mom!', 'You', 'Are', 'So', 'Cool!'];
   var wordIndex = 0;
   var animationTime = 3000;
   var textPosOffset = 2.5;
@@ -43,20 +43,21 @@ function Text() {
     word.scale.multiplyScalar(0.1);
 
     var target = camera.clone();
-    target.translateZ(-100);
+    target.translateZ(-300);
     var currentPos = {
-      x: 0,
-      y: 100,
-      z: 0
+      x: -WIDTH/2,
+      y: 0,
+      z: HEIGHT
     };
     var finalPos = {
-      x: target.position.x - textPosOffset,
-      y: target.position.y - textPosOffset,
+      x: target.position.x-20,
+      y: target.position.y,
       z: target.position.z,
     };
     var wordTweenIn = new TWEEN.Tween(currentPos).
     to(finalPos, animationTime).
     easing(TWEEN.Easing.Cubic.InOut).
+    // delay(10000).
     onUpdate(function() {
       word.position.set(currentPos.x, currentPos.y, currentPos.z);
     }).start();

@@ -28,6 +28,8 @@ function init() {
   var text = new Text();
   text.init();
 
+  createDebugPoints();
+
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -55,5 +57,11 @@ function onWindowResize(){
     renderer.setSize( window.innerWidth, window.innerHeight );
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
+}
+
+function createDebugPoints(){
+  var sphereGeo = new THREE.SphereGeometry(10);
+  var sphereMesh = new THREE.Mesh(sphereGeo, new THREE.MeshBasicMaterial({color: 0xff0000}));
+  scene.add(sphereMesh);
 }
 

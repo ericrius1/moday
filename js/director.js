@@ -1,8 +1,4 @@
 var photo;
-var controlsEnabled = true;
-// var controlsEnabled = false;
-// var cameraTweenEnabled = true;
-var cameraTweenEnabled = false;
 function Director(){
   this.init = function(){
     cameraController = new CameraController();
