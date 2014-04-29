@@ -53,6 +53,7 @@ function Photo(){
     // particleSystem.sortParticles = true;
 
     particles = particleSystem.geometry.vertices;
+
     colors = particleSystem.geometry.colors;
     scene.add(particleSystem);
     particleSystem.position.x += WIDTH/2;
@@ -62,18 +63,20 @@ function Photo(){
   };
 
   this.update = function(){
-    //get some vertices close to where the camera is, and twirl them around a bit
+    particleSystem.geometry.verticesNeedUpdate = true;
+
   };
 
   this.slowUpdate = function(){
-    var self = this;
-    console.log("tee hee");
+        //get some vertices close to where the camera is, and twirl them around a bit
+     var self = this;
     //grab some vertices near the camera
-    var someParticles = _.sample(particles, 1000);
-    _.each(someParticles, function(particle){
-      particle.y = 20;
-    });
+   
     setTimeout(function(){
+      var someParticles = _.sample(particleSystem.geometry.vertices, 10000);
+      _.each(someParticles, function(particle){
+        particle.y = 20;
+      });
       self.slowUpdate();
     }, 1000);
   };
