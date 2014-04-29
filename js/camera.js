@@ -10,8 +10,8 @@ function CameraController(){
     camera.position.x -= WIDTH/2 +55;
     scene.add(camera);
     if(controlsEnabled){
-      // controls = new THREE.TrackballControls(camera);
-     controls = new THREE.FlyControls(camera);
+      controls = new THREE.TrackballControls(camera);
+     // controls = new THREE.FlyControls(camera);
      controls.movementSpeed = 300;
      controls.rollSpeed = 0.5;
      controls.dragToLook = true;

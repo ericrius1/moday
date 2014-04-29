@@ -3,11 +3,11 @@
 //Should be word by word
 function Text() {
   var message = [];
-  var messageArray = ['We', 'Love', 'You', 'Mom!', 'You', 'Are', 'So', 'Cool!'];
+  var messageArray = ['We', 'Love', 'Yar', 'Mom!', 'You', 'Are', 'So', 'Cool!'];
   var wordIndex = 0;
   var animationTime = 3000;
   var textPosOffset = 2.5;
-  var finalWordX = -1270;
+  var finalWordX = -WIDTH/2;
   var finalWordScale = 2.5; 
   var wordGap = finalWordScale * 200;
   this.init = function() {
