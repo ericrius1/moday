@@ -33,8 +33,8 @@ function Text() {
     wordGeo.computeBoundingBox();
 
     var word = new THREE.Mesh(wordGeo, this.wordMaterial);
-    word.lookAt(camera.position);
-
+    // word.lookAt(camera.position);
+    word.rotation.y = camera.rotation.y;
     //Add mesh to letterObj
     message[wordKey].mesh = word;
 
@@ -45,12 +45,12 @@ function Text() {
     var target = camera.clone();
     target.translateZ(-300);
     var currentPos = {
-      x: -WIDTH/2,
+      x: 0,
       y: 0,
       z: HEIGHT
     };
     var finalPos = {
-      x: target.position.x-20,
+      x: target.position.x + 10,
       y: target.position.y,
       z: target.position.z,
     };
@@ -107,7 +107,7 @@ function Text() {
         finalPos: {
           x: finalWordX + (i * wordGap),
           y: 11,
-          z: -500,
+          z: 0,
           scale: finalWordScale,
           rotX: -Math.PI/2
         }

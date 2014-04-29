@@ -1,16 +1,18 @@
 // var controlsEnabled = true;
-// var controlsEnabled = false;
-var controlsEnabled = true;
-var cameraTweenEnabled = false;
+var controlsEnabled = false;
+// var cameraTweenEnabled = false;
+var cameraTweenEnabled = true;
 function CameraController(){
   var travelDistance = 1000;
   var camAnimationTime = 20000;
   this.init = function(){
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 100000);
-    camera.position.x -= WIDTH/2 +55;
+    camera.rotation.y = Math.PI;
     scene.add(camera);
     if(controlsEnabled){
       controls = new THREE.TrackballControls(camera);
+      camera.position.z = 100;
+      camera.position.y = 300;
      // controls = new THREE.FlyControls(camera);
      controls.movementSpeed = 300;
      controls.rollSpeed = 0.5;
