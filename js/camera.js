@@ -4,7 +4,7 @@ var cameraTweenEnabled = true;
 // var cameraTweenEnabled = false;
 function CameraController(){
   var travelDistance = HEIGHT * 0.6;
-  var camAnimationTime = 5000;
+  var camAnimationTime = 20000;
   var self;
   this.init = function(){
     self = this;
@@ -57,7 +57,6 @@ function CameraController(){
   };
 
   this.revealPic = function(){
-    console.log('hm');
     var currentPos = {
       x: camera.position.x,
       y: camera.position.y,

@@ -26,6 +26,10 @@ function init() {
   light.position.y = 100;
   scene.add(light);
 
+  light = new THREE.DirectionalLight(0xffffff);
+  light.position.z = -100;
+  scene.add(light);
+
 
 
 

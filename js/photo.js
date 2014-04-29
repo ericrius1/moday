@@ -57,10 +57,25 @@ function Photo(){
     scene.add(particleSystem);
     particleSystem.position.x += WIDTH/2;
     pixels = null;
+
+    this.slowUpdate();
   };
 
   this.update = function(){
-    // particleSystem.rotation.x += 0.00001;
+    //get some vertices close to where the camera is, and twirl them around a bit
+  };
+
+  this.slowUpdate = function(){
+    var self = this;
+    console.log("tee hee");
+    //grab some vertices near the camera
+    var someParticles = _.sample(particles, 1000);
+    _.each(someParticles, function(particle){
+      particle.y = 20;
+    });
+    setTimeout(function(){
+      self.slowUpdate();
+    }, 1000);
   };
 }
 
