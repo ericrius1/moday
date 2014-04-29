@@ -1,10 +1,10 @@
-// var controlsEnabled = false;
-// var cameraTweenEnabled = true;
-var controlsEnabled = true;
-var cameraTweenEnabled = false;
+var controlsEnabled = false;
+var cameraTweenEnabled = true;
+// var controlsEnabled = true;
+// var cameraTweenEnabled = false;
 function CameraController(){
-  var travelDistance = 1000;
-  var camAnimationTime = 2000;
+  var travelDistance = HEIGHT * 0.6;
+  var camAnimationTime = 5000;
   var self;
   this.init = function(){
     self = this;
@@ -57,31 +57,33 @@ function CameraController(){
   };
 
   this.revealPic = function(){
-    // var currentPos = {
-    //   x: camera.position.x,
-    //   y: camera.position.y,
-    //   z: camera.position.z,
-    //   rotX: camera.rotation.x,
-    //   rotY: camera.rotation.y,
-    //   rotZ: camera.rotation.z,
-    // }
+    console.log('hm');
+    var currentPos = {
+      x: camera.position.x,
+      y: camera.position.y,
+      z: camera.position.z,
+      rotX: camera.rotation.x,
+      rotY: camera.rotation.y,
+      rotZ: camera.rotation.z,
+    };
 
-    // var finalPos = {
-    //   x:    ,
-    //   y:     ,
-    //   z:      ,
-    //   rotX: Math.PI/2,
-    //   rotY: camera.rotation.y,
-    //   rotZ: camera.rotation.z,
+    var finalPos = {
+      x: 0,
+      y: 2000,
+      z: HEIGHT,
+      rotX: Math.PI * 0.6,
+      rotY: camera.rotation.y,
+      rotZ: Math.PI,
 
-    // }
-    // var revealTween= new TWEEN.Tween(currentPos).
-    //   to(finalPos, 10000).
-    //   easing(TWEEN.Easing.Cubic.InOut).
-    //   onUpdate(function(){
-    //     camera.position.set(finalPos.x, finalPos.y, finalPos.z);
-    //     camera.rotation.set(finalPos.rotX, finalPos.rotY, finalPos.rotZ);
-    //   })
+    };
+    var revealTween= new TWEEN.Tween(currentPos).
+      to(finalPos, 10000).
+      easing(TWEEN.Easing.Cubic.InOut).
+      onUpdate(function(){
+        console.log('hm');
+        camera.position.set(currentPos.x, currentPos.y, currentPos.z);
+        camera.rotation.set(currentPos.rotX, currentPos.rotY, currentPos.rotZ);
+      }).start();
 
   };
 }
