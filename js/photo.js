@@ -59,7 +59,7 @@ function Photo(){
     particleSystem.position.x += WIDTH/2;
     pixels = null;
 
-    this.slowUpdate();
+    // this.slowUpdate();
   };
 
   this.update = function(){
@@ -73,7 +73,10 @@ function Photo(){
     //grab some vertices near the camera
    
     setTimeout(function(){
-      var someParticles = _.sample(particleSystem.geometry.vertices, 10000);
+      _.each(particles, function(particle){
+        particle.y = _.random(-10,-5);
+      });
+      var someParticles = _.sample(particles, 10000);
       _.each(someParticles, function(particle){
         particle.y = 20;
       });

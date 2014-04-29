@@ -4,7 +4,6 @@ var cameraTweenEnabled = true;
 // var cameraTweenEnabled = false;
 function CameraController(){
   var travelDistance = HEIGHT * 0.6;
-  var camAnimationTime = 20000;
   var self;
   this.init = function(){
     self = this;
@@ -38,7 +37,7 @@ function CameraController(){
     if(cameraTweenEnabled){
       var camTween = new TWEEN.Tween(currentPos).
         to(finalPos, camAnimationTime).
-        easing(TWEEN.Easing.Quadratic.In).
+        easing(TWEEN.Easing.Linear.None).
         onUpdate(function(){
           camera.position.set(currentPos.x, currentPos.y, currentPos.z);
         }).start();

@@ -22,21 +22,15 @@ function init() {
   director = new Director();
   director.init();
 
-  var light = new THREE.DirectionalLight(0xffffff);
+  var light = new THREE.DirectionalLight(0xff0000);
   light.position.y = 100;
   scene.add(light);
 
-  light = new THREE.DirectionalLight(0xffffff);
+  light = new THREE.DirectionalLight(0xff00ff);
   light.position.z = -100;
   scene.add(light);
 
-
-
-
-  var text = new Text();
-  text.init();
-
-  createDebugPoints();
+  // createDebugPoints();
 
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);

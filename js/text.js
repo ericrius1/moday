@@ -5,16 +5,17 @@ function Text() {
   var message = [];
   var messageArray = ['We', 'Love', 'You', 'Mom!'];
   var wordIndex = 0;
-  var animationTime = 3000;
+  var animationTime = camAnimationTime/(messageArray.length+1);
   var textPosOffset = 2.5;
   var finalWordX = -WIDTH/2;
   var finalWordScale = 2.0; 
+  var distanceToCam = 250;
   var wordGap = finalWordScale * 200;
   this.init = function() {
 
     setUpWords();
     this.wordMaterial = new THREE.MeshLambertMaterial({
-      color: 0xff0000
+      color: 0xffffff
     });
     this.addWord();
   };
@@ -43,7 +44,7 @@ function Text() {
     word.scale.multiplyScalar(0.1);
 
     var target = camera.clone();
-    target.translateZ(-300);
+    target.translateZ(-distanceToCam);
     var currentPos = {
       x: 0,
       y: 0,
@@ -56,7 +57,7 @@ function Text() {
     };
     var wordTweenIn = new TWEEN.Tween(currentPos).
     to(finalPos, animationTime).
-    easing(TWEEN.Easing.Cubic.InOut).
+    easing(TWEEN.Easing.Quartic.Out).
     // delay(10000).
     onUpdate(function() {
       word.position.set(currentPos.x, currentPos.y, currentPos.z);
