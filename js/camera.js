@@ -1,11 +1,13 @@
-// var controlsEnabled = true;
-var controlsEnabled = false;
-// var cameraTweenEnabled = false;
-var cameraTweenEnabled = true;
+// var controlsEnabled = false;
+// var cameraTweenEnabled = true;
+var controlsEnabled = true;
+var cameraTweenEnabled = false;
 function CameraController(){
   var travelDistance = 1000;
-  var camAnimationTime = 20000;
+  var camAnimationTime = 2000;
+  var self;
   this.init = function(){
+    self = this;
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 100000);
     camera.rotation.y = Math.PI;
     scene.add(camera);
@@ -40,6 +42,9 @@ function CameraController(){
         onUpdate(function(){
           camera.position.set(currentPos.x, currentPos.y, currentPos.z);
         }).start();
+        camTween.onComplete(function(){
+          self.revealPic();
+        });
     }
   };
 
@@ -49,5 +54,34 @@ function CameraController(){
     if(controlsEnabled){
       controls.update(delta); 
     }
+  };
+
+  this.revealPic = function(){
+    // var currentPos = {
+    //   x: camera.position.x,
+    //   y: camera.position.y,
+    //   z: camera.position.z,
+    //   rotX: camera.rotation.x,
+    //   rotY: camera.rotation.y,
+    //   rotZ: camera.rotation.z,
+    // }
+
+    // var finalPos = {
+    //   x:    ,
+    //   y:     ,
+    //   z:      ,
+    //   rotX: Math.PI/2,
+    //   rotY: camera.rotation.y,
+    //   rotZ: camera.rotation.z,
+
+    // }
+    // var revealTween= new TWEEN.Tween(currentPos).
+    //   to(finalPos, 10000).
+    //   easing(TWEEN.Easing.Cubic.InOut).
+    //   onUpdate(function(){
+    //     camera.position.set(finalPos.x, finalPos.y, finalPos.z);
+    //     camera.rotation.set(finalPos.rotX, finalPos.rotY, finalPos.rotZ);
+    //   })
+
   };
 }

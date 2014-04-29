@@ -22,6 +22,10 @@ function init() {
   director = new Director();
   director.init();
 
+  var light = new THREE.DirectionalLight(0xffffff);
+  light.position.y = 100;
+  scene.add(light);
+
 
 
 
@@ -62,6 +66,10 @@ function onWindowResize(){
 function createDebugPoints(){
   var sphereGeo = new THREE.SphereGeometry(10);
   var sphereMesh = new THREE.Mesh(sphereGeo, new THREE.MeshBasicMaterial({color: 0xff0000}));
+  scene.add(sphereMesh);
+
+  sphereMesh = new THREE.Mesh(sphereGeo, new THREE.MeshBasicMaterial({color: 0xff0000}));
+  sphereMesh.position.z = HEIGHT;
   scene.add(sphereMesh);
 }
 

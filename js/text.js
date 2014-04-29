@@ -3,18 +3,18 @@
 //Should be word by word
 function Text() {
   var message = [];
-  var messageArray = ['We', 'Love', 'Yar', 'Mom!', 'You', 'Are', 'So', 'Cool!'];
+  var messageArray = ['We', 'Love', 'You', 'Mom!'];
   var wordIndex = 0;
   var animationTime = 3000;
   var textPosOffset = 2.5;
   var finalWordX = -WIDTH/2;
-  var finalWordScale = 2.5; 
+  var finalWordScale = 2.0; 
   var wordGap = finalWordScale * 200;
   this.init = function() {
 
     setUpWords();
-    this.wordMaterial = new THREE.MeshBasicMaterial({
-      color: 0xff00ff
+    this.wordMaterial = new THREE.MeshLambertMaterial({
+      color: 0xff0000
     });
     this.addWord();
   };
