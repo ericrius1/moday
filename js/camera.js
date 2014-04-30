@@ -9,6 +9,7 @@ function CameraController(){
     self = this;
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 100000);
     camera.rotation.y = Math.PI;
+    camera.translateZ(-400);
     scene.add(camera);
     if(controlsEnabled){
       controls = new THREE.TrackballControls(camera);
@@ -37,7 +38,8 @@ function CameraController(){
     if(cameraTweenEnabled){
       var camTween = new TWEEN.Tween(currentPos).
         to(finalPos, camAnimationTime).
-        easing(TWEEN.Easing.Linear.None).
+        easing(TWEEN.Easing.Cubic.InOut).
+        delay(34000).
         onUpdate(function(){
           camera.position.set(currentPos.x, currentPos.y, currentPos.z);
         }).start();

@@ -9,7 +9,7 @@ function Text() {
   var textPosOffset = 2.5;
   var finalWordX = -WIDTH/2;
   var finalWordScale = 2.0; 
-  var distanceToCam = 250;
+  var distanceToCam = 100;
   var wordGap = finalWordScale * 300;
   this.init = function() {
 
@@ -58,7 +58,7 @@ function Text() {
     };
     var wordTweenIn = new TWEEN.Tween(currentPos).
     to(finalPos, animationTime).
-    easing(TWEEN.Easing.Quartic.Out).
+    easing(TWEEN.Easing.Quadratic.Out).
     // delay(10000).
     onUpdate(function() {
       word.position.set(currentPos.x, currentPos.y, currentPos.z);

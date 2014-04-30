@@ -4,11 +4,13 @@ function Light(word){
   var lightDebugGeo = new THREE.SphereGeometry(10);
   var lightDebug = new THREE.Mesh(lightDebugGeo, new THREE.MeshBasicMaterial());
   word.add(lightDebug);
-  lightDebug.position.z += 500;
+  lightDebug.position.z += 200;
+  lightDebug.position.x += 100;
 
   var light = new THREE.PointLight(0xff00ff);
+  light.position.z += 200;
+  light.position.x += 100;
   word.add(light);
-  light.position.z += 500;
 
   this.update = function(){
 

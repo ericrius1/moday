@@ -3,40 +3,27 @@ var scene, camera, controls, renderer, canvas, cameraController, clock, director
 var geometry, material, mesh;
 
 
-init();
+var song = loadAudio('assets/starwars.mp3');
 
 function init() {
-
-  clock = new THREE.Clock();
-
   //CANVAS
   canvas = document.createElement('canvas');
   canvas.width = WIDTH;
   canvas.height = HEIGHT;
-  context = canvas.getContext('2d');
-
-  var song = loadAudio('assets/starwars.mp3');
-
-
   scene = new THREE.Scene();
-
+  context = canvas.getContext('2d');
   director = new Director();
-
+  director.init();
 
   var light = new THREE.DirectionalLight(0xff0000);
   light.position.y = 100;
-  scene.add(light);
-
-  // light = new THREE.DirectionalLight(0xff00ff);
-  // light.position.z = -100;
   // scene.add(light);
-
-  // createDebugPoints();
 
   renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
 
   document.body.appendChild(renderer.domElement);
+
 
 }
 
@@ -51,8 +38,6 @@ function animate() {
 // handle resizing windows
 window.onload = function(){
   window.addEventListener( 'resize', onWindowResize, false );
-  onWindowResize();
-  
 };
 
 function onWindowResize(){
@@ -75,10 +60,9 @@ function createDebugPoints(){
 function loadAudio(uri)
 {
     var audio = new Audio();
-    //audio.onload = isAppLoaded; // It doesn't works!
     audio.addEventListener('canplaythrough', function(){
       this.play();
-      director.init();
+      init();
     }, false); // It works!!
     audio.src = uri;
     return audio;
