@@ -89,7 +89,7 @@ function Photo() {
         onUpdate(function() {
           particle.y = curPos.y;
           var index = Math.round(i + 8 * numParticlesPerRow);
-          particles[index].y = curPos.y
+          particles[index].y = curPos.y;
         }).start();
         testTween.onComplete(function() {
           if( i  <  Math.round(particles.length * 0.70)){

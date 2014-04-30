@@ -33,58 +33,30 @@ function CameraController() {
       x: camera.position.x,
       y: camera.position.y,
       z: camera.position.z,
+      rotX: camera.rotation.x,
+      rotY:  camera.rotation.y,
+      rotZ: camera.rotation.z 
     };
 
     var target = camera.clone();
     target.translateZ(-travelDistance);
 
     var finalPos = {
-      x: target.position.x,
-      y: target.position.y,
-      z: target.position.z,
+      x: 0,
+      y: 1100,
+      z: HEIGHT - 300,
+      rotX: Math.PI * 0.55,
+      rotY: camera.rotation.y,
+      rotZ: Math.PI,
     };
     var camTween = new TWEEN.Tween(currentPos).
     to(finalPos, scenes[1].duration).
     easing(TWEEN.Easing.Quadratic.In).
     onUpdate(function() {
       camera.position.set(currentPos.x, currentPos.y, currentPos.z);
-
-
-    }).start();
-    camTween.onComplete(function() {
-      self.revealPic();
-    });
-
-  };
-  this.revealPic = function() {
-    var currentPos = {
-      x: camera.position.x,
-      y: camera.position.y,
-      z: camera.position.z,
-      rotX: camera.rotation.x,
-      rotY: camera.rotation.y,
-      rotZ: camera.rotation.z,
-      fov: camera.fov
-    };
-
-    var finalPos = {
-      x: 0,
-      y:1100,
-      z: HEIGHT- 300,
-      rotX: Math.PI * 0.55,
-      rotY: camera.rotation.y,
-      rotZ: Math.PI,
-
-    };
-    var revealTween = new TWEEN.Tween(currentPos).
-    to(finalPos, 10000).
-    easing(TWEEN.Easing.Cubic.InOut).
-    onUpdate(function() {
-      console.log('hm');
-      camera.position.set(currentPos.x, currentPos.y, currentPos.z);
       camera.rotation.set(currentPos.rotX, currentPos.rotY, currentPos.rotZ);
 
-    }).start();
 
+    }).start();
   };
 }
