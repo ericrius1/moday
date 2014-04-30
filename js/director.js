@@ -34,6 +34,8 @@ function Director() {
       duration = 2000;
     }
     var startTime = Date.now();
+
+    //SCENE1
     var scene1 = {
       startTime: startTime,
       duration: duration,
@@ -54,6 +56,11 @@ function Director() {
     };
     scenes.push(scene1);
     duration = 19000;
+    if(short){
+      duration = 2000;
+    }
+
+    //SCENE2
     var scene2 = {
       startTime: scene1.endTime,
       duration: duration,
@@ -71,6 +78,22 @@ function Director() {
       photo.update();
     };
     scenes.push(scene2);
+
+
+    //SCENE3
+    duration = 10000;
+    var scene3 = {
+      startTime: scene2.endTime,
+      duration: duration,
+      endTime: scene2.endTime + duration
+    }
+    scene3.init = function(){
+
+    };
+    scene3.update = function(){
+
+    };
+    scenes.push(scene3);
     scenes[currentSceneIndex].init();
   };
 }

@@ -28,6 +28,7 @@ function CameraController() {
     }
   };
 
+
   this.activateHyperDrive = function() {
     var currentPos = {
       x: camera.position.x,
