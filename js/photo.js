@@ -36,7 +36,7 @@ function Photo(){
         if(pixels.data[p+3] > 0){
           var pixelCol  = (pixels.data[p] << 16) + (pixels.data[p+1] << 8) + pixels.data[p+2];
           var color     = new THREE.Color(pixelCol);
-          var vector    = new THREE.Vector3( x/4 + _.random(-2, 2), _.random(-10,-5), -z);
+          var vector    = new THREE.Vector3( x/4 + _.random(-2, 2), _.random(-20, -10), -z);
 
           //push on the particle
           geometry.vertices.push(vector);

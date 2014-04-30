@@ -1,11 +1,11 @@
 var photo;
-var camAnimationTime = 50000;
 var clock = new THREE.Clock();
 var currentSceneIndex = 0;
 var short = true;
+var scenes = [];
 
 function Director() {
-  var scenes = [];
+  scenes = [];
   var startTime;
   this.init = function() {
 
@@ -29,7 +29,7 @@ function Director() {
   this.initScenes = function() {
     var duration = 34000;
     if(short){
-      duration = 1000;
+      duration = 3000;
     }
     var startTime = Date.now();
     var scene1 = {
@@ -52,7 +52,7 @@ function Director() {
       }
     };
     scenes.push(scene1);
-    duration = 10000;
+    duration = 20000;
     var scene2 = {
       startTime: scene1.endTime,
       duration: duration,

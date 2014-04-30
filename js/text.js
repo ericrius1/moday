@@ -5,12 +5,12 @@ function Text() {
   var message = [];
   var messageArray = ['Happy', "Mother's", 'Day!'];
   var wordIndex = 0;
-  var animationTime = camAnimationTime/(messageArray.length+1);
   var textPosOffset = 2.5;
   var finalWordX = -WIDTH/2;
   var finalWordScale = 2.0; 
   var distanceToCam = 100;
   var wordGap = finalWordScale * 300;
+  var animationTime = 5000;
   this.init = function() {
 
     setUpWords();
