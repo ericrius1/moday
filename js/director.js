@@ -20,8 +20,8 @@ function Director() {
     cameraController.update();
     scenes[currentSceneIndex].update();
     var currentTime = Date.now();
-    if(currentTime > scenes[currentSceneIndex].endTime){
-      if(currentSceneIndex < scenes.length-1){
+    if (currentTime > scenes[currentSceneIndex].endTime) {
+      if (currentSceneIndex < scenes.length - 1) {
         currentSceneIndex++;
         scenes[currentSceneIndex].init();
       }
@@ -30,7 +30,7 @@ function Director() {
 
   this.initScenes = function() {
     var duration = 34500;
-    if(short){
+    if (short) {
       duration = 2000;
     }
     var startTime = Date.now();
@@ -56,7 +56,7 @@ function Director() {
     };
     scenes.push(scene1);
     duration = 19000;
-    if(short){
+    if (short) {
       duration = 2000;
     }
 
@@ -67,14 +67,14 @@ function Director() {
       endTime: scene1.endTime + duration,
       songPoint: 34000
     };
-    scene2.init = function(){
+    scene2.init = function() {
       cameraController.activateHyperDrive();
-      if(short){
-        song.currentTime = this.songPoint/1000;
+      if (short) {
+        song.currentTime = this.songPoint / 1000;
       }
       photo.createRunway();
     };
-    scene2.update =  function(){
+    scene2.update = function() {
       photo.update();
     };
     scenes.push(scene2);
@@ -85,12 +85,17 @@ function Director() {
     var scene3 = {
       startTime: scene2.endTime,
       duration: duration,
-      endTime: scene2.endTime + duration
-    }
-    scene3.init = function(){
+      endTime: scene2.endTime + duration,
+      songPoint: 53000
+    };
+    scene3.init = function() {
+      frame.init();
+      if (short) {
+        song.currentTime = this.songPoint / 1000;
+      }
 
     };
-    scene3.update = function(){
+    scene3.update = function() {
 
     };
     scenes.push(scene3);

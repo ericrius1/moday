@@ -1,5 +1,5 @@
-var controlsEnabled = false;
-// var controlsEnabled = true;
+// var controlsEnabled = false;
+var controlsEnabled = true;
 function CameraController() {
   var travelDistance = HEIGHT * 0.6;
   var self;
@@ -7,7 +7,6 @@ function CameraController() {
     self = this;
     camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 100000);
     camera.rotation.y = Math.PI;
-    camera.translateZ(-400);
     scene.add(camera);
     if (controlsEnabled) {
       controls = new THREE.TrackballControls(camera);
@@ -18,6 +17,23 @@ function CameraController() {
       // controls.rollSpeed = 0.5;
       // controls.dragToLook = true;
     }
+    this.beginTaxi();
+  };
+
+  this.beginTaxi = function(){
+    var curPos = {
+      z: camera.position.z
+    };
+
+    var finalPos = {
+      z: camera.position.z + 400
+    };
+    var taxiTween = new TWEEN.Tween(curPos).
+      to(finalPos, scenes[0].duration).
+      onUpdate(function(){
+        camera.position.z = curPos.z;
+      }).start();
+
   };
 
   this.update = function() {
