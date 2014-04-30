@@ -44,7 +44,7 @@ function CameraController() {
     var finalPos = {
       x: 0,
       y: 1100,
-      z: HEIGHT - 300,
+      z: HEIGHT - 400,
       rotX: Math.PI * 0.55,
       rotY: camera.rotation.y,
       rotZ: Math.PI,

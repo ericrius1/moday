@@ -1,8 +1,8 @@
 var photo;
 var clock = new THREE.Clock();
 var currentSceneIndex = 0;
-// var short = true;
-var short = false;
+var short = true;
+// var short = false;
 var scenes = [];
 
 function Director() {
@@ -53,7 +53,7 @@ function Director() {
       }
     };
     scenes.push(scene1);
-    duration = 20000;
+    duration = 19000;
     var scene2 = {
       startTime: scene1.endTime,
       duration: duration,

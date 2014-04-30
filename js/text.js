@@ -3,13 +3,13 @@
 //Should be word by word
 function Text() {
   var message = [];
-  var messageArray = ['Happy', "Mother's", 'Day!'];
+  var messageArray = ['We', "Love", 'You', 'Mom!'];
   var wordIndex = 0;
-  var textPosOffset = 2.5;
-  var finalWordX = -WIDTH/2;
+  var textPosOffset = 8;
+  var finalWordX = -WIDTH/2 - 50;
   var finalWordScale = 2.0; 
   var distanceToCam = 20;
-  var wordGap = finalWordScale * 300;
+  var wordGap = finalWordScale * 200;
   var animationTime = scenes[0].duration/messageArray.length;
   this.init = function() {
 
@@ -52,7 +52,7 @@ function Text() {
       z: HEIGHT
     };
     var finalPos = {
-      x: target.position.x + 10,
+      x: target.position.x + textPosOffset,
       y: target.position.y,
       z: target.position.z,
     };
@@ -109,7 +109,7 @@ function Text() {
         finalPos: {
           x: finalWordX + (i * wordGap),
           y: 11,
-          z: 0,
+          z: -40,
           scale: finalWordScale,
           rotX: -Math.PI/2
         }
