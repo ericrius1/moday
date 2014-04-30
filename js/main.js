@@ -15,20 +15,21 @@ function init() {
   canvas.height = HEIGHT;
   context = canvas.getContext('2d');
 
+  var song = loadAudio('assets/starwars.mp3');
 
 
   scene = new THREE.Scene();
 
   director = new Director();
-  director.init();
+
 
   var light = new THREE.DirectionalLight(0xff0000);
   light.position.y = 100;
   scene.add(light);
 
-  light = new THREE.DirectionalLight(0xff00ff);
-  light.position.z = -100;
-  scene.add(light);
+  // light = new THREE.DirectionalLight(0xff00ff);
+  // light.position.z = -100;
+  // scene.add(light);
 
   // createDebugPoints();
 
@@ -69,5 +70,17 @@ function createDebugPoints(){
   sphereMesh = new THREE.Mesh(sphereGeo, new THREE.MeshBasicMaterial({color: 0xff0000}));
   sphereMesh.position.z = HEIGHT;
   scene.add(sphereMesh);
+}
+
+function loadAudio(uri)
+{
+    var audio = new Audio();
+    //audio.onload = isAppLoaded; // It doesn't works!
+    audio.addEventListener('canplaythrough', function(){
+      this.play();
+      director.init();
+    }, false); // It works!!
+    audio.src = uri;
+    return audio;
 }
 

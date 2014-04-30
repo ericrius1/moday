@@ -69,7 +69,7 @@ function CameraController(){
       x: 0,
       y: 2000,
       z: HEIGHT,
-      rotX: Math.PI * 0.6,
+      rotX: Math.PI * 0.65,
       rotY: camera.rotation.y,
       rotZ: Math.PI,
 

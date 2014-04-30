@@ -3,14 +3,14 @@
 //Should be word by word
 function Text() {
   var message = [];
-  var messageArray = ['We', 'Love', 'You', 'Mom!'];
+  var messageArray = ['Happy', "Mother's", 'Day!'];
   var wordIndex = 0;
   var animationTime = camAnimationTime/(messageArray.length+1);
   var textPosOffset = 2.5;
   var finalWordX = -WIDTH/2;
   var finalWordScale = 2.0; 
   var distanceToCam = 250;
-  var wordGap = finalWordScale * 200;
+  var wordGap = finalWordScale * 300;
   this.init = function() {
 
     setUpWords();
@@ -26,7 +26,7 @@ function Text() {
     var wordGeo = new THREE.TextGeometry(wordKey, {
       size: 50,
       height: 5,
-      curveSegments: 4,
+      curveSegments: 8,
       font: 'helvetiker'
     });
 
@@ -38,6 +38,7 @@ function Text() {
     word.rotation.y = camera.rotation.y;
     //Add mesh to letterObj
     message[wordKey].mesh = word;
+    var light = new Light(word);
 
 
     scene.add(word);

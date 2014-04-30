@@ -1,5 +1,5 @@
 var photo;
-var camAnimationTime = 20000;
+var camAnimationTime = 50000;
 function Director() {
   this.init = function() {
     cameraController = new CameraController();
