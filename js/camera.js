@@ -1,7 +1,5 @@
 var controlsEnabled = false;
-var cameraTweenEnabled = true;
 // var controlsEnabled = true;
-// var cameraTweenEnabled = false;
 function CameraController() {
   var travelDistance = HEIGHT * 0.6;
   var self;
@@ -71,7 +69,7 @@ function CameraController() {
 
     var finalPos = {
       x: 0,
-      y:1000,
+      y:1100,
       z: HEIGHT- 300,
       rotX: Math.PI * 0.55,
       rotY: camera.rotation.y,

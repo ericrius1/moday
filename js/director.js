@@ -16,6 +16,7 @@ function Director() {
   };
 
   this.update = function() {
+    cameraController.update();
     scenes[currentSceneIndex].update();
     var currentTime = Date.now();
     if(currentTime > scenes[currentSceneIndex].endTime){
@@ -29,7 +30,7 @@ function Director() {
   this.initScenes = function() {
     var duration = 34000;
     if(short){
-      duration = 3000;
+      duration = 2000;
     }
     var startTime = Date.now();
     var scene1 = {
@@ -47,7 +48,6 @@ function Director() {
 
       },
       update: function() {
-        cameraController.update();
         photo.update();
       }
     };
@@ -64,9 +64,10 @@ function Director() {
       if(short){
         song.currentTime = this.songPoint/1000;
       }
+      photo.createRunway();
     };
     scene2.update =  function(){
-
+      photo.update();
     };
     scenes.push(scene2);
     scenes[currentSceneIndex].init();

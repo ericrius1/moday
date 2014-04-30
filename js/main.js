@@ -7,7 +7,6 @@ var song = loadAudio('assets/starwars.mp3');
 init();
 function init() {
   //CANVAS
-  console.log('wahh');
   canvas = document.createElement('canvas');
   canvas.width = WIDTH;
   canvas.height = HEIGHT;
