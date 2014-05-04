@@ -47,7 +47,7 @@ function Director() {
           var text = new Text();
           text.init();
           animate();
-        }, 100);
+        }, 300);
 
       },
       update: function() {
