@@ -70,35 +70,6 @@ function Photo() {
 
   };
 
-  this.createRunway = function() {
-    //get some vertices close to where the camera is, and twirl them around a bit
-    var self = this;
-    //grab some vertices near the camera
-
-    // for (var i = Math.round(particles.length * 0.48); i < particles.length * 0.49; i++) {
-    var i = Math.round(particles.length * 0.52);
-    tweenVertex(i);
-    //one row is HEIGHT/(DENSITY/2)
-
-    function tweenVertex(i) {
-
-      var particle = particles[i];
-      var curPos = {y:particle.y};
-      var testTween = new TWEEN.Tween(curPos).
-        to({y: 50}, 500).
-        onUpdate(function() {
-          particle.y = curPos.y;
-          var index = Math.round(i + 8 * numParticlesPerRow);
-          particles[index].y = curPos.y;
-        }).start();
-        testTween.onComplete(function() {
-          if( i  <  Math.round(particles.length * 0.70)){
-            i--;
-            tweenVertex(i);
-          }
-        });
-    }
-  };
 }
 
 

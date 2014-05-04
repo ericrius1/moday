@@ -17,7 +17,7 @@ function init() {
   frame = new Frame();
   director.init();
 
-  this.createDebugPoints();
+  // this.createDebugPoints();
 
   var light = new THREE.DirectionalLight(0xff0000);
   light.position.y = 100;

@@ -1,5 +1,5 @@
-// var controlsEnabled = false;
-var controlsEnabled = true;
+var controlsEnabled = false;
+// var controlsEnabled = true;
 function CameraController() {
   var travelDistance = HEIGHT * 0.6;
   var self;
@@ -12,10 +12,6 @@ function CameraController() {
       controls = new THREE.TrackballControls(camera);
       camera.position.z = 100;
       camera.position.y = 300;
-      // controls = new THREE.FlyControls(camera);
-      // controls.movementSpeed = 300;
-      // controls.rollSpeed = 0.5;
-      // controls.dragToLook = true;
     }
     this.beginTaxi();
   };

@@ -1,8 +1,8 @@
 var photo;
 var clock = new THREE.Clock();
 var currentSceneIndex = 0;
-var short = true;
-// var short = false;
+// var short = true;
+var short = false;
 var scenes = [];
 
 function Director() {
@@ -72,7 +72,6 @@ function Director() {
       if (short) {
         song.currentTime = this.songPoint / 1000;
       }
-      photo.createRunway();
     };
     scene2.update = function() {
       photo.update();
