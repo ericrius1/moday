@@ -9,11 +9,13 @@ function Director() {
   scenes = [];
   var startTime;
   this.init = function() {
+    var self = this;
 
     cameraController = new CameraController();
     photo = new Photo();
-    this.initScenes();
-    //Give the browser a chance to create the image object
+    image.onload = function(){
+      self.initScenes();
+    };
   };
 
   this.update = function() {
@@ -41,18 +43,13 @@ function Director() {
       duration: duration,
       endTime: startTime + duration,
       init: function() {
-        setTimeout(function() {
-          cameraController.init();
-          photo.init();
-          var text = new Text();
-          text.init();
-          animate();
-        }, 500);
-
+        cameraController.init();
+        photo.init();
+        var text = new Text();
+        text.init();
+        animate();
       },
-      update: function() {
-        photo.update();
-      }
+      update: function(){}
     };
     scenes.push(scene1);
     duration = 19000;
@@ -74,7 +71,6 @@ function Director() {
       }
     };
     scene2.update = function() {
-      photo.update();
     };
     scenes.push(scene2);
 
